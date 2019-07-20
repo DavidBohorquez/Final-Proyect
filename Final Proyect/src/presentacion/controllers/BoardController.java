@@ -5,13 +5,15 @@
  */
 package presentacion.controllers;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import presentacion.views.BoardView;
 
 /**
  *
- * @author estudiantes
+ * @author Andre Sarmiento
  */
-public class BoardController {
+public class BoardController implements KeyListener {
 
     private BoardView gameBoard;
 
@@ -23,4 +25,61 @@ public class BoardController {
         return gameBoard;
     }
 
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_UP:
+                gameBoard.getRobot().moveUp();
+                gameBoard.getLienzo().repaint();
+                break;
+
+            case KeyEvent.VK_DOWN:
+                gameBoard.getRobot().moveDown(gameBoard.getLienzo().getHeight());
+                gameBoard.getLienzo().repaint();
+                break;
+
+            case KeyEvent.VK_LEFT:
+
+                break;
+
+            case KeyEvent.VK_RIGHT:
+
+                break;
+
+            case KeyEvent.VK_SPACE:
+
+                break;
+
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_UP:
+
+                break;
+
+            case KeyEvent.VK_DOWN:
+
+                break;
+
+            case KeyEvent.VK_LEFT:
+
+                break;
+
+            case KeyEvent.VK_RIGHT:
+
+                break;
+
+            case KeyEvent.VK_SPACE:
+                break;
+
+        }
+    }
 }

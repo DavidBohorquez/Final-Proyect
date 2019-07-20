@@ -5,23 +5,42 @@
  */
 package presentacion.views;
 
+import java.awt.Color;
 import presentacion.controllers.BoardController;
 import presentacion.model.Modelo;
 
 /**
  *
- * @author estudiantes
+ * @author Andre Sarmiento
  */
 public class BoardView extends javax.swing.JFrame {
 
     private Modelo myGame;
     private BoardController boardCtrl;
 
+    private TestCanvas lienzo;
+
+    private Robot robot;
+
     public BoardView(Modelo aThis) {
         myGame = aThis;
+        boardCtrl = getBoardCtrl();
+
+        robot = new Robot();
+
+        lienzo = getLienzo();
+
+        add(lienzo);
 
         initComponents();
+        addListeners();
+
         this.setLocationRelativeTo(null);
+
+    }
+
+    public void addListeners() {
+        addKeyListener(getBoardCtrl());
     }
 
     public Modelo getMyGame() {
@@ -35,6 +54,19 @@ public class BoardView extends javax.swing.JFrame {
         return boardCtrl;
     }
 
+    public TestCanvas getLienzo() {
+        if (lienzo == null) {
+            lienzo = new TestCanvas(this);
+            lienzo.setBounds(0, 0, 800, 480);
+            lienzo.setBackground(Color.white);
+        }
+        return lienzo;
+    }
+
+    public Robot getRobot() {
+        return robot;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,12 +77,14 @@ public class BoardView extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(816, 518));
+        setSize(new java.awt.Dimension(816, 518));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 410, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -59,6 +93,8 @@ public class BoardView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
