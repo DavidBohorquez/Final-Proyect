@@ -7,8 +7,10 @@ package presentacion.controllers;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import logic.command.Move;
 import presentacion.views.BoardView;
+import presentacion.views.TestCanvas;
+
+
 
 /**
  *
@@ -17,6 +19,8 @@ import presentacion.views.BoardView;
 public class BoardController implements KeyListener {
 
     private BoardView gameBoard;
+    private TestCanvas test;
+
 
     public BoardController(BoardView aThis) {
         gameBoard = aThis;
@@ -33,31 +37,44 @@ public class BoardController implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        Move movements = gameBoard.getMyGame().getMovements();
-        
+
+       
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_UP:
-                gameBoard.getMyGame().getRobot().moveUp();
+            case KeyEvent.VK_UP:               
+                test.ia=4;
+                gameBoard.getRobot().moveUp();
                 gameBoard.getLienzo().repaint();
+                System.out.println("arriba");
                 break;
 
             case KeyEvent.VK_DOWN:
-                gameBoard.getMyGame().getRobot().moveDown();
+                
+                gameBoard.getRobot().moveDown(gameBoard.getLienzo().getHeight());
+                test.ia=4;
                 gameBoard.getLienzo().repaint();
+                System.out.println("abajo");
                 break;
 
             case KeyEvent.VK_LEFT:
-                movements.walkLeft();
+               
+                test.ia=6;
+                gameBoard.getRobot().moveLeft();
                 gameBoard.getLienzo().repaint();
+                System.out.println("izquierda");
                 break;
 
             case KeyEvent.VK_RIGHT:
-                movements.walkRight();
+                test.ia=2;
+                gameBoard.getRobot().moveRight(gameBoard.getLienzo().getWidth());
                 gameBoard.getLienzo().repaint();
+                System.out.println("derecha");
+
                 break;
 
             case KeyEvent.VK_SPACE:
-
+                test.ia=8;
+                gameBoard.getLienzo().repaint();
+                System.out.println("golpe");
                 break;
 
         }
@@ -67,22 +84,28 @@ public class BoardController implements KeyListener {
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
-
+                test.ia=1;
+                gameBoard.getLienzo().repaint();
                 break;
 
             case KeyEvent.VK_DOWN:
-
+                test.ia=1;
+                gameBoard.getLienzo().repaint();
                 break;
 
             case KeyEvent.VK_LEFT:
-
+                test.ia=1;
+                gameBoard.getLienzo().repaint();
                 break;
 
             case KeyEvent.VK_RIGHT:
-
+                test.ia=1;
+                gameBoard.getLienzo().repaint();
                 break;
 
             case KeyEvent.VK_SPACE:
+                test.ia=1;
+                gameBoard.getLienzo().repaint();
                 break;
 
         }
