@@ -5,6 +5,10 @@
  */
 package presentacion.model;
 
+import logic.Robot;
+import logic.command.Move;
+import logic.command.MoveLeftCommand;
+import logic.command.MoveRightCommand;
 import presentacion.views.BoardView;
 
 /**
@@ -13,14 +17,34 @@ import presentacion.views.BoardView;
  */
 public class Modelo {
 
+    //private static Modelo myGame;
+    private Robot robot;
+
+    private MoveRightCommand moveRight;
+    private MoveLeftCommand moveLeft;
+
+    private Move movements;
+
     private BoardView gameBoard;
 
+    /*private*/
     public Modelo() {
-        getBoardGame();
+        robot = Robot.getRobot();
+
+        moveRight = new MoveRightCommand(robot, this);
+        moveLeft = new MoveLeftCommand(robot, this);
+
+        movements = new Move(moveRight, moveLeft);
+
+        gameBoard = getBoardGame();
     }
 
     public void initGame() {
         getBoardGame().setVisible(true);
+    }
+
+    public Robot getRobot() {
+        return robot;
     }
 
     public BoardView getBoardGame() {
@@ -28,6 +52,16 @@ public class Modelo {
             gameBoard = new BoardView(this);
         }
         return gameBoard;
+    }
+
+    /*public static Modelo getMyGame() {
+     if (myGame == null) {
+     myGame = new Modelo();
+     }
+     return myGame;
+     }*/
+    public Move getMovements() {
+        return movements;
     }
 
 }

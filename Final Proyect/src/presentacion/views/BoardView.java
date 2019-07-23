@@ -5,6 +5,7 @@
  */
 package presentacion.views;
 
+import logic.Robot;
 import java.awt.Color;
 import presentacion.controllers.BoardController;
 import presentacion.model.Modelo;
@@ -16,18 +17,18 @@ import presentacion.model.Modelo;
 public class BoardView extends javax.swing.JFrame {
 
     private Modelo myGame;
+    
     private BoardController boardCtrl;
 
     private TestCanvas lienzo;
 
-
-    private Robot robot;
+    
 
     public BoardView(Modelo aThis) {
         myGame = aThis;
         boardCtrl = getBoardCtrl();
 
-        robot = new Robot();
+        
 
         lienzo = getLienzo();
 
@@ -63,19 +64,9 @@ public class BoardView extends javax.swing.JFrame {
         }
         return lienzo;
     }
-    
+
     
 
-    public Robot getRobot() {
-        return robot;
-    }
-    
- 
-
-//     public Robot setRobot(int i) {
-//         
-//        return robot;
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -5,11 +5,18 @@
  */
 package logic.command;
 
+import java.awt.Image;
+import presentacion.model.Modelo;
+
 /**
  *
  * @author Andre Sarmiento
  */
-public interface Command {
+public /*interface*/abstract class Command {
 
-    public void execute();
+    protected Modelo myGame;
+    
+    protected Image walk, fly;
+    
+    public abstract void execute();
 }

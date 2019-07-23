@@ -13,7 +13,7 @@ public class Robot {
 
     private static Robot robot;
 
-    final int MOVESPEED = 10;
+    private int MOVESPEED = 10;
 
     private int posX, posY;
 
@@ -68,6 +68,14 @@ public class Robot {
 
     public void setPosY(int posY) {
         this.posY = posY;
+    }
+
+    public int getMOVESPEED() {
+        return MOVESPEED;
+    }
+
+    public void setMOVESPEED(int MOVESPEED) {
+        this.MOVESPEED = MOVESPEED;
     }
 
 }

@@ -5,66 +5,27 @@
  */
 package logic.command;
 
-import presentacion.model.Modelo;
-import presentacion.views.TestCanvas;
-
 /**
  *
  * @author Andre Sarmiento
  */
 public class Move {
 
-    private Modelo myGame;
+    private Command rightCommand, leftCommand;
 
-    private Command upCommand, downCommand, rightCommand, leftCommand;
-
-    public Move(Command up, Command down, Command right, Command left) {
-        upCommand = up;
-        downCommand = down;
+    public Move(Command right, Command left) {
         rightCommand = right;
         leftCommand = left;
 
-        //myGame = Modelo.getMyGame();
     }
 
-    public void walkRight() {
-        System.out.println("WALK RIGHT");
-        TestCanvas lienzo = myGame.getBoardGame().getLienzo();
-
-        lienzo.setCharacter(lienzo.getChWalkRight());
+    public void moveRight() {
 
         rightCommand.execute();
     }
 
-    public void walkLeft() {
-        TestCanvas lienzo = myGame.getBoardGame().getLienzo();
-
-        lienzo.setCharacter(lienzo.getChWalkLeft());
+    public void moveLeft() {
 
         leftCommand.execute();
-    }
-
-    public void flyRight() {
-        TestCanvas lienzo = myGame.getBoardGame().getLienzo();
-
-        lienzo.setCharacter(lienzo.getChFlyRiht());
-
-        rightCommand.execute();
-    }
-
-    public void flyLeft() {
-        TestCanvas lienzo = myGame.getBoardGame().getLienzo();
-
-        lienzo.setCharacter(lienzo.getChFlyLeft());
-
-        leftCommand.execute();
-    }
-
-    public Modelo getMyGame() {
-        return myGame;
-    }
-
-    public void setMyGame(Modelo myGame) {
-        this.myGame = myGame;
     }
 }
