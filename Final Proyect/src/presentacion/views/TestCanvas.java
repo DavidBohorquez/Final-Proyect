@@ -5,6 +5,7 @@
  */
 package presentacion.views;
 
+import logic.Robot;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -27,7 +28,7 @@ public class TestCanvas extends Canvas implements Runnable {
 
     private Graphics lapiz;
 
-    private Image character;
+    private Image character, chWalkRight, chWalkLeft, chFlyRiht, chFlyLeft;
 
     public TestCanvas(BoardView gameBoard) {
         this.gameBoard = gameBoard;
@@ -38,6 +39,10 @@ public class TestCanvas extends Canvas implements Runnable {
          System.out.println(e);
          }*/
         character = new ImageIcon(getClass().getResource("/resource/images/character.png")).getImage();
+        chWalkRight = new ImageIcon(getClass().getResource("/resource/images/character.png")).getImage();
+        chWalkLeft = new ImageIcon(getClass().getResource("/resource/images/character.png")).getImage();
+        chFlyRiht = new ImageIcon(getClass().getResource("/resource/images/character.png")).getImage();
+        chFlyLeft = new ImageIcon(getClass().getResource("/resource/images/character.png")).getImage();
 
         backOne = new Background(0, 0);
         backTwo = new Background(backOne.getImageWidth(), 0);
@@ -66,13 +71,13 @@ public class TestCanvas extends Canvas implements Runnable {
     public void paint(Graphics g) {
         Graphics2D pincel = (Graphics2D) g;
 
-        Robot robot = gameBoard.getRobot();
+        Robot robot = gameBoard.getMyGame().getRobot();
 
         if (image == null) {
             image = (BufferedImage) (createImage(getWidth(), getHeight()));
             lapiz = image.createGraphics();
         }
-        
+
         lapiz.setColor(getBackground());
         lapiz.fillRect(0, 0, getWidth(), getHeight());
         //lapiz.setColor(getForeground());
@@ -91,6 +96,46 @@ public class TestCanvas extends Canvas implements Runnable {
 
     public BufferedImage getImageB() {
         return image;
+    }
+
+    public Image getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Image character) {
+        this.character = character;
+    }
+
+    public Image getChWalkRight() {
+        return chWalkRight;
+    }
+
+    public void setChWalkRight(Image chWalkRight) {
+        this.chWalkRight = chWalkRight;
+    }
+
+    public Image getChWalkLeft() {
+        return chWalkLeft;
+    }
+
+    public void setChWalkLeft(Image chWalkLeft) {
+        this.chWalkLeft = chWalkLeft;
+    }
+
+    public Image getChFlyRiht() {
+        return chFlyRiht;
+    }
+
+    public void setChFlyRiht(Image chFlyRiht) {
+        this.chFlyRiht = chFlyRiht;
+    }
+
+    public Image getChFlyLeft() {
+        return chFlyLeft;
+    }
+
+    public void setChFlyLeft(Image chFlyLeft) {
+        this.chFlyLeft = chFlyLeft;
     }
 
 }

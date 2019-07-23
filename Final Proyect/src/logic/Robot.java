@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package presentacion.views;
-
-import java.awt.Dimension;
+package logic;
 
 /**
  *
@@ -13,17 +11,26 @@ import java.awt.Dimension;
  */
 public class Robot {
 
+    private static Robot robot;
+
     final int MOVESPEED = 10;
 
     private int posX, posY;
 
-    public Robot() {
+    private Robot() {
         posX = 0;
         posY = 0;
     }
 
-    public void moveDown(int height) {
-        if (posY + (126 + MOVESPEED) <= height) {
+    public static Robot getRobot() {
+        if (robot == null) {
+            robot = new Robot();
+        }
+        return robot;
+    }
+
+    public void moveDown() {
+        if (posY + (126 + MOVESPEED) <= 480) {
             posY += MOVESPEED;
         }
     }
@@ -33,6 +40,18 @@ public class Robot {
             posY -= MOVESPEED;
         }
 
+    }
+
+    public void moveRight() {
+        if (posX + 122 <= 800) {
+            posX += MOVESPEED;
+        }
+    }
+
+    public void moveLeft() {
+        if (posX - MOVESPEED >= 0) {
+            posX -= MOVESPEED;
+        }
     }
 
     public int getPosX() {

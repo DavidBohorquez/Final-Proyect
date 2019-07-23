@@ -7,6 +7,7 @@ package presentacion.controllers;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import logic.command.Move;
 import presentacion.views.BoardView;
 
 /**
@@ -32,23 +33,27 @@ public class BoardController implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        Move movements = gameBoard.getMyGame().getMovements();
+        
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
-                gameBoard.getRobot().moveUp();
+                gameBoard.getMyGame().getRobot().moveUp();
                 gameBoard.getLienzo().repaint();
                 break;
 
             case KeyEvent.VK_DOWN:
-                gameBoard.getRobot().moveDown(gameBoard.getLienzo().getHeight());
+                gameBoard.getMyGame().getRobot().moveDown();
                 gameBoard.getLienzo().repaint();
                 break;
 
             case KeyEvent.VK_LEFT:
-
+                movements.walkLeft();
+                gameBoard.getLienzo().repaint();
                 break;
 
             case KeyEvent.VK_RIGHT:
-
+                movements.walkRight();
+                gameBoard.getLienzo().repaint();
                 break;
 
             case KeyEvent.VK_SPACE:
