@@ -22,4 +22,8 @@ public class Memento {
         this.posY = posY;
         this.MOVESPEED = MOVESPEED;
     }
+    
+    public void restore() {
+        
+    }
 }

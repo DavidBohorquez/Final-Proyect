@@ -10,5 +10,5 @@ package logic.memento;
  * @author Andre Sarmiento
  */
 public class Caretaker {
-    
+    //MODEL OF GAME (myGame).
 }

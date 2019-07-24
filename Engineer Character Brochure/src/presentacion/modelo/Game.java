@@ -13,6 +13,7 @@ import logic.command.MoveLeftCommand;
 import logic.command.MoveRightCommand;
 import logic.command.MoveUpCommand;
 import logic.decorator.Flame;
+import logic.memento.Memento;
 import logica.abstractfactory.factories.AbstractFactory;
 import logica.abstractfactory.factories.CivilEngineerFactory;
 import logica.abstractfactory.factories.ElectricalEngineerFactory;
@@ -60,6 +61,8 @@ public class Game {
     private Operation operation;
 
     private EngrGame flame;
+    
+    private Memento backup;
 
     private BoardView gameBoard;
 
@@ -117,6 +120,10 @@ public class Game {
 
     public EngrGame getFlame() {
         return flame;
+    }
+    
+    public void makeBuckup() {
+        
     }
 
     //---------------------------------------------------------------------------------------
