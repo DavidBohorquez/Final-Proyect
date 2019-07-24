@@ -3,12 +3,16 @@ package presentacion.modelo;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import logic.EngrGame;
 import logic.Operation;
 import logic.Robot;
 import logic.command.Move;
+import logic.command.MoveDownCommand;
+import logic.command.MoveHitCommand;
 import logic.command.MoveLeftCommand;
 import logic.command.MoveRightCommand;
 import logic.command.MoveUpCommand;
+import logic.decorator.Flame;
 import logica.abstractfactory.factories.AbstractFactory;
 import logica.abstractfactory.factories.CivilEngineerFactory;
 import logica.abstractfactory.factories.ElectricalEngineerFactory;
@@ -48,23 +52,30 @@ public class Game {
     private MoveRightCommand moveRight;
     private MoveLeftCommand moveLeft;
     private MoveUpCommand moveUp;
-            
+    private MoveDownCommand moveDown;
+    private MoveHitCommand moveHit;
+
     private Move movements;
-    
+
     private Operation operation;
+
+    private EngrGame flame;
 
     private BoardView gameBoard;
 
     public Game() {
 
         robot = Robot.getRobot();
+        robot.ingeniar(this);
 
         moveRight = new MoveRightCommand(robot, this);
         moveLeft = new MoveLeftCommand(robot, this);
         moveUp = new MoveUpCommand(robot, this);
+        moveDown = new MoveDownCommand(robot, this);
+        moveHit = new MoveHitCommand(robot, this);
 
-        movements = new Move(moveRight, moveLeft, moveUp);
-        
+        movements = new Move(moveRight, moveLeft, moveUp, moveDown, moveHit);
+
         operation = getOperation();
 
         gameBoard = getBoardGame();
@@ -82,6 +93,12 @@ public class Game {
         return gameBoard;
     }
 
+    public void addFlame() {
+        if (flame == null) {
+            flame = new Flame(robot);
+        }
+    }
+
     public Move getMovements() {
         return movements;
     }
@@ -92,14 +109,17 @@ public class Game {
     }
 
     public Operation getOperation() {
-        if(operation == null) {
+        if (operation == null) {
             operation = new Operation();
         }
         return operation;
     }
-    
-    //---------------------------------------------------------------------------------------
 
+    public EngrGame getFlame() {
+        return flame;
+    }
+
+    //---------------------------------------------------------------------------------------
     public void chooseFactory(int i) {
         JLabel lblBgEngWindow = getVentanaEng().getLblBgEngWindow();
 

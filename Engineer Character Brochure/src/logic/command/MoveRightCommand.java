@@ -38,10 +38,18 @@ public class MoveRightCommand extends Command {
 
             lienzo.setCharacter(fly);
         } else {
-            System.out.println("CAMINANDO!!!!");
-            robot.setMOVESPEED(2);
+            System.out.println("CAMINANDO!!!!" + robot.getPosX());
 
-            lienzo.setCharacter(walk);
+            if (robot.getPosX() <= 200) {
+                robot.setMOVESPEED(2);
+                lienzo.setCharacter(walk);
+            } else {
+                System.out.println("LLAMAS!!!!");
+                robot.setMOVESPEED(10);
+                myGame.addFlame();
+                myGame.getFlame().ingeniar(myGame);
+            }
+
         }
         robot.moveRight();
     }

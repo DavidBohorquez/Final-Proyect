@@ -51,7 +51,8 @@ public class BoardController implements KeyListener {
 
             case KeyEvent.VK_DOWN:
                 System.out.println("POSY: " + gameBoard.getMyGame().getRobot().getPosY());
-                gameBoard.getMyGame().getRobot().moveDown();
+              movements.moveDown();
+//gameBoard.getMyGame().getRobot().moveDown();
                 lienzo.repaint();
                 break;
 
@@ -66,7 +67,9 @@ public class BoardController implements KeyListener {
                 break;
 
             case KeyEvent.VK_SPACE:
-
+                System.out.println("golpeee");
+movements.moveHit();
+                lienzo.repaint();
                 break;
 
         }
@@ -78,15 +81,17 @@ public class BoardController implements KeyListener {
 
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
-
+lienzo.setCharacter(lienzo.getChRightQuiet());
+                lienzo.repaint();
                 break;
 
             case KeyEvent.VK_DOWN:
-
+lienzo.setCharacter(lienzo.getChRightQuiet());
+                lienzo.repaint();
                 break;
 
             case KeyEvent.VK_LEFT:
-                lienzo.setCharacter(lienzo.getChLeftQuiet());
+                lienzo.setCharacter(lienzo.getChRightQuiet());
                 lienzo.repaint();
                 break;
 
@@ -96,6 +101,8 @@ public class BoardController implements KeyListener {
                 break;
 
             case KeyEvent.VK_SPACE:
+                lienzo.setCharacter(lienzo.getChRightQuiet());
+                lienzo.repaint();
                 break;
 
         }

@@ -31,6 +31,8 @@ public class TestCanvas extends Canvas implements Runnable {
 
     private Image character, chRightQuiet, chLeftQuiet, sum;
 
+    private Thread drawThread;
+
     public TestCanvas(BoardView gameBoard) {
         this.gameBoard = gameBoard;
 
@@ -39,15 +41,16 @@ public class TestCanvas extends Canvas implements Runnable {
          } catch (Exception e) {
          System.out.println(e);
          }*/
-        character = new ImageIcon(getClass().getResource("/recursos/images/game/walkRight.png")).getImage();
-        chRightQuiet = new ImageIcon(getClass().getResource("/recursos/images/game/walkRight.png")).getImage();
-        chLeftQuiet = new ImageIcon(getClass().getResource("/recursos/images/game/walkLeft.png")).getImage();
+        //character = new ImageIcon(getClass().getResource("/recursos/images/game/sprite1.png")).getImage();
+        chRightQuiet = new ImageIcon(getClass().getResource("/recursos/images/game/sprite1.png")).getImage();
+        chLeftQuiet = new ImageIcon(getClass().getResource("/recursos/images/game/StayLeft.png")).getImage();
         sum = new ImageIcon(getClass().getResource("/recursos/images/game/down.png")).getImage();
 
         backOne = new Background(0, 0);
         backTwo = new Background(backOne.getImageWidth(), 0);
 
-        new Thread(this).start();
+        drawThread = new Thread(this);
+        drawThread.start();
         setVisible(true);
     }
 
@@ -124,6 +127,10 @@ public class TestCanvas extends Canvas implements Runnable {
 
     public void setChLeftQuiet(Image chLeftQuiet) {
         this.chLeftQuiet = chLeftQuiet;
+    }
+
+    public Thread getDrawThread() {
+        return drawThread;
     }
 
 }
