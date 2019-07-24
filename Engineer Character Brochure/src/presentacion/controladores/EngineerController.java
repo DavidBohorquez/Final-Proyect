@@ -44,12 +44,11 @@ public class EngineerController implements MouseListener {
             modelo.getVentanaEngFactory().setVisible(true);
             modelo.getVentanaEng().setVisible(false);
         } else if (e.getSource().equals(ventanaEngineer.getLblIngeniar())) {
-            System.out.println("INGENIAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             modelo.getBoardGame().setVisible(true);
             /*modelo.getVentanaEng().getLienzo().setVisible(true);
-            modelo.getVentanaEng().getLblEngr().setVisible(false);
+             modelo.getVentanaEng().getLblEngr().setVisible(false);
 
-            modelo.getPreDegreeEngr().ingeniar(ventanaEngineer.getLienzo());*/
+             modelo.getPreDegreeEngr().ingeniar(ventanaEngineer.getLienzo());*/
         } else if (e.getSource().equals(ventanaEngineer.getLblBgEngWindow())) {
             modelo.getPreDegreeEngr().setIsAnimado(false);
         }

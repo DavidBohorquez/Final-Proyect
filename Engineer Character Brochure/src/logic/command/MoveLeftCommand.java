@@ -26,14 +26,14 @@ public class MoveLeftCommand extends Command {
 
         this.robot = robot;
 
-        walk = new ImageIcon(getClass().getResource("/recursos/images/walkLeft.png")).getImage();
-        fly = new ImageIcon(getClass().getResource("/recursos/images/flyLeft.png")).getImage();
+        walk = new ImageIcon(getClass().getResource("/recursos/images/game/walkLeft.png")).getImage();
+        fly = new ImageIcon(getClass().getResource("/recursos/images/game/flyLeft.png")).getImage();
     }
 
     @Override
     public void execute() {
         TestCanvas lienzo = myGame.getBoardGame().getLienzo();
-        if ((robot.getPosY() + 126) <= 380) {
+        if ((robot.getPosY() + 126) <= 390) {
             System.out.println("VOLANDO L!!!");
             robot.setMOVESPEED(10);
             lienzo.setCharacter(fly);

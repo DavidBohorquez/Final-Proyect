@@ -22,7 +22,6 @@ public class Robot {
         posY = 0;
     }
 
-    
     //SINGLETON
     public static Robot getRobot() {
         if (robot == null) {
@@ -30,9 +29,10 @@ public class Robot {
         }
         return robot;
     }
+
     //---------
     public void moveDown() {
-        if (posY + (126 + MOVESPEED) <= 480) {
+        if (posY + (126 + MOVESPEED) <= 429) {
             posY += MOVESPEED;
         }
     }

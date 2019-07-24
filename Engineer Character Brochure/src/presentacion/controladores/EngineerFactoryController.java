@@ -81,13 +81,11 @@ public class EngineerFactoryController implements MouseListener {
             ventanaEngFactory.initStates();
             modelo.changeListenerLblCreate();
 
-            System.out.println("OFF LISTENERS PRODUCTS!!!");
             modelo.removAllListeners(ventanaEngFactory.getLblsProducts(), this);
 
             background.setIcon(ventanaEngFactory.getImgBase());
 
         } else if (e.getSource().equals(ventanaEngFactory.getLblCreate())) {
-            System.out.println("FACTORY:------" + modelo.check(states));
             modelo.chooseFactory(modelo.check(states));
 
             modelo.buildEngineer();
@@ -98,7 +96,6 @@ public class EngineerFactoryController implements MouseListener {
             modelo.getVentanaEngFactory().setVisible(false);
         }
 
-        System.out.println("Click");
     }
 
     @Override
@@ -178,40 +175,31 @@ public class EngineerFactoryController implements MouseListener {
             }
         } else if (e.getSource().equals(ventanaEngFactory.getLblsProducts()[0])) {
             if (modelo.check(states) == 0) {
-                System.out.println("GLASES!!!");
                 ventanaEngFactory.getLblBackground().setIcon(ventanaEngFactory.getImgSoftAccessory());
             } else if (modelo.check(states) == 1) {
-                System.out.println("GORRA!!!");
                 ventanaEngFactory.getLblBackground().setIcon(ventanaEngFactory.getImgElectAccessory());
             } else if (modelo.check(states) == 2) {
-                System.out.println("HELMT!!!");
                 ventanaEngFactory.getLblBackground().setIcon(ventanaEngFactory.getImgCivilAccessory());
             }
             ventanaEngFactory.getLblEngrProduct().setIcon(modelo.getAccessory().operation());
 
         } else if (e.getSource().equals(ventanaEngFactory.getLblsProducts()[1])) {
             if (modelo.check(states) == 0) {
-                System.out.println("LAPTOP!!!");
                 ventanaEngFactory.getLblBackground().setIcon(ventanaEngFactory.getImgSoftTool());
                 //ventanaEngFactory.getLblEngrProduct().setIcon(modelo.getTool().operation());
             } else if (modelo.check(states) == 1) {
-                System.out.println("MULTI!!!");
                 ventanaEngFactory.getLblBackground().setIcon(ventanaEngFactory.getImgElectTool());
             } else if (modelo.check(states) == 2) {
-                System.out.println("PAPER!!!");
                 ventanaEngFactory.getLblBackground().setIcon(ventanaEngFactory.getImgCivilTool());
             }
             ventanaEngFactory.getLblEngrProduct().setIcon(modelo.getTool().operation());
 
         } else if (e.getSource().equals(ventanaEngFactory.getLblsProducts()[2])) {
             if (modelo.check(states) == 0) {
-                System.out.println("FERRARI!!!");
                 ventanaEngFactory.getLblBackground().setIcon(ventanaEngFactory.getImgSoftVehicle());
             } else if (modelo.check(states) == 1) {
-                System.out.println("MOTORBIKE!!!");
                 ventanaEngFactory.getLblBackground().setIcon(ventanaEngFactory.getImgElectVehicle());
             } else if (modelo.check(states) == 2) {
-                System.out.println("BUS!!!");
                 ventanaEngFactory.getLblBackground().setIcon(ventanaEngFactory.getImgCivilVehicle());
             }
             ventanaEngFactory.getLblEngrProduct().setIcon(modelo.getVehicle().operation());
@@ -287,13 +275,10 @@ public class EngineerFactoryController implements MouseListener {
             ventanaEngFactory.getLblEngrProduct().setIcon(null);
 
             if (modelo.check(states) == 0) {
-                System.out.println("SOFT EXIT!!!");
                 ventanaEngFactory.getLblBackground().setIcon(ventanaEngFactory.getImgSoftCreate());
             } else if (modelo.check(states) == 1) {
-                System.out.println("ELECT EXIT!!!");
                 ventanaEngFactory.getLblBackground().setIcon(ventanaEngFactory.getImgElectCreate());
             } else if (modelo.check(states) == 2) {
-                System.out.println("CIVIL EXIT!!!");
                 ventanaEngFactory.getLblBackground().setIcon(ventanaEngFactory.getImgCivilCreate());
             }
         }

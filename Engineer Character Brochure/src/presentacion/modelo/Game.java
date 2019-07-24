@@ -3,10 +3,12 @@ package presentacion.modelo;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import logic.Operation;
 import logic.Robot;
 import logic.command.Move;
 import logic.command.MoveLeftCommand;
 import logic.command.MoveRightCommand;
+import logic.command.MoveUpCommand;
 import logica.abstractfactory.factories.AbstractFactory;
 import logica.abstractfactory.factories.CivilEngineerFactory;
 import logica.abstractfactory.factories.ElectricalEngineerFactory;
@@ -39,30 +41,36 @@ public class Game {
 
     private Director director;
     private Engineer preDegreeEngr;
-    
+
     //NEW CODE
     private Robot robot;
 
     private MoveRightCommand moveRight;
     private MoveLeftCommand moveLeft;
-
+    private MoveUpCommand moveUp;
+            
     private Move movements;
+    
+    private Operation operation;
 
     private BoardView gameBoard;
 
     public Game() {
-        
+
         robot = Robot.getRobot();
 
         moveRight = new MoveRightCommand(robot, this);
         moveLeft = new MoveLeftCommand(robot, this);
+        moveUp = new MoveUpCommand(robot, this);
 
-        movements = new Move(moveRight, moveLeft);
+        movements = new Move(moveRight, moveLeft, moveUp);
+        
+        operation = getOperation();
 
         gameBoard = getBoardGame();
 
     }
-    
+
     public Robot getRobot() {
         return robot;
     }
@@ -73,15 +81,24 @@ public class Game {
         }
         return gameBoard;
     }
-    
+
     public Move getMovements() {
         return movements;
     }
 
     public void iniciar() {
-        getVentanaPrincipal().setVisible(true);
-
+        //getVentanaPrincipal().setVisible(true);
+        getBoardGame().setVisible(true);
     }
+
+    public Operation getOperation() {
+        if(operation == null) {
+            operation = new Operation();
+        }
+        return operation;
+    }
+    
+    //---------------------------------------------------------------------------------------
 
     public void chooseFactory(int i) {
         JLabel lblBgEngWindow = getVentanaEng().getLblBgEngWindow();
@@ -129,13 +146,13 @@ public class Game {
         preDegreeEngr = director.getEngineer();
 
         /*if(getFactory() instanceof SoftwareEngineerFactory) {
-            preDegreeEngr.getImgsEngr()[0] = new ImageIcon();
+         preDegreeEngr.getImgsEngr()[0] = new ImageIcon();
             
-        }else if(getFactory() instanceof PreDegreeEngineer) {
+         }else if(getFactory() instanceof PreDegreeEngineer) {
             
-        }else if(getFactory() instanceof CivilEngineerFactory) {
+         }else if(getFactory() instanceof CivilEngineerFactory) {
             
-        }*/
+         }*/
     }
 
     public void onListeners(JLabel[] labels, MouseListener controller) {

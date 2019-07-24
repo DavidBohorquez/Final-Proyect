@@ -29,7 +29,6 @@ public class PrincipalController implements MouseListener, MouseMotionListener {
             modelo.getVentanaEngFactory().setVisible(true);
             modelo.getVentanaPrincipal().setVisible(false);
         }
-        System.out.println("Click");
     }
 
     @Override

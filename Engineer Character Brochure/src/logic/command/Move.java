@@ -11,21 +11,23 @@ package logic.command;
  */
 public class Move {
 
-    private Command rightCommand, leftCommand;
+    private Command rightCommand, leftCommand, upCommand;
 
-    public Move(Command right, Command left) {
+    public Move(Command right, Command left, Command up) {
         rightCommand = right;
         leftCommand = left;
-
+        upCommand = up;
     }
 
     public void moveRight() {
-
         rightCommand.execute();
     }
 
     public void moveLeft() {
-
         leftCommand.execute();
+    }
+
+    public void moveUp() {
+        upCommand.execute();
     }
 }

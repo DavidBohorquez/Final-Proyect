@@ -12,6 +12,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
+import logic.Operation;
 
 /**
  *
@@ -28,7 +29,7 @@ public class TestCanvas extends Canvas implements Runnable {
 
     private Graphics lapiz;
 
-    private Image character, chWalkRight, chWalkLeft, chFlyRiht, chFlyLeft;
+    private Image character, chRightQuiet, chLeftQuiet, sum;
 
     public TestCanvas(BoardView gameBoard) {
         this.gameBoard = gameBoard;
@@ -38,11 +39,10 @@ public class TestCanvas extends Canvas implements Runnable {
          } catch (Exception e) {
          System.out.println(e);
          }*/
-        character = new ImageIcon(getClass().getResource("/recursos/images/character.png")).getImage();
-        chWalkRight = new ImageIcon(getClass().getResource("/recursos/images/character.png")).getImage();
-        chWalkLeft = new ImageIcon(getClass().getResource("/recursos/images/character.png")).getImage();
-        chFlyRiht = new ImageIcon(getClass().getResource("/recursos/images/character.png")).getImage();
-        chFlyLeft = new ImageIcon(getClass().getResource("/recursos/images/character.png")).getImage();
+        character = new ImageIcon(getClass().getResource("/recursos/images/game/walkRight.png")).getImage();
+        chRightQuiet = new ImageIcon(getClass().getResource("/recursos/images/game/walkRight.png")).getImage();
+        chLeftQuiet = new ImageIcon(getClass().getResource("/recursos/images/game/walkLeft.png")).getImage();
+        sum = new ImageIcon(getClass().getResource("/recursos/images/game/down.png")).getImage();
 
         backOne = new Background(0, 0);
         backTwo = new Background(backOne.getImageWidth(), 0);
@@ -73,6 +73,8 @@ public class TestCanvas extends Canvas implements Runnable {
 
         Robot robot = gameBoard.getMyGame().getRobot();
 
+        Operation operation = gameBoard.getMyGame().getOperation();
+
         if (image == null) {
             image = (BufferedImage) (createImage(getWidth(), getHeight()));
             lapiz = image.createGraphics();
@@ -80,12 +82,14 @@ public class TestCanvas extends Canvas implements Runnable {
 
         lapiz.setColor(getBackground());
         lapiz.fillRect(0, 0, getWidth(), getHeight());
-        //lapiz.setColor(getForeground());
 
         lapiz.drawImage(backOne.getImage(), backOne.getX(), backOne.getY(), null);
         lapiz.drawImage(backTwo.getImage(), backTwo.getX(), backTwo.getY(), null);
-        //lapiz.drawImage(character, gameBoard.getRobot().getPosX(), gameBoard.getRobot().getPosY(), this);
         lapiz.drawImage(character, robot.getPosX(), robot.getPosY(), this);
+
+        if (operation.isActive() == true) {
+            lapiz.drawImage(sum, operation.getPosX(), operation.getPosY(), null);
+        }
 
         pincel.drawImage(image, null, 0, 0);
 
@@ -106,36 +110,20 @@ public class TestCanvas extends Canvas implements Runnable {
         this.character = character;
     }
 
-    public Image getChWalkRight() {
-        return chWalkRight;
+    public Image getChRightQuiet() {
+        return chRightQuiet;
     }
 
-    public void setChWalkRight(Image chWalkRight) {
-        this.chWalkRight = chWalkRight;
+    public void setChRightQuiet(Image chRightQuiet) {
+        this.chRightQuiet = chRightQuiet;
     }
 
-    public Image getChWalkLeft() {
-        return chWalkLeft;
+    public Image getChLeftQuiet() {
+        return chLeftQuiet;
     }
 
-    public void setChWalkLeft(Image chWalkLeft) {
-        this.chWalkLeft = chWalkLeft;
-    }
-
-    public Image getChFlyRiht() {
-        return chFlyRiht;
-    }
-
-    public void setChFlyRiht(Image chFlyRiht) {
-        this.chFlyRiht = chFlyRiht;
-    }
-
-    public Image getChFlyLeft() {
-        return chFlyLeft;
-    }
-
-    public void setChFlyLeft(Image chFlyLeft) {
-        this.chFlyLeft = chFlyLeft;
+    public void setChLeftQuiet(Image chLeftQuiet) {
+        this.chLeftQuiet = chLeftQuiet;
     }
 
 }

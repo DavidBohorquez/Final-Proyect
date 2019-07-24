@@ -25,7 +25,7 @@ public class Background {
         this.y = y;
 
         try {
-            image = ImageIO.read(getClass().getResource("/recursos/images/background.png"));
+            image = ImageIO.read(getClass().getResource("/recursos/images/game/background.png"));
         } catch (Exception e) {
             System.out.println(e);
         }
